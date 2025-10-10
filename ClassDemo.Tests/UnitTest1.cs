@@ -55,6 +55,30 @@
             string second = "Inigo Montoya";
             second = second.ToUpper();
             Assert.Equal("INIGO MONTOYA", second);
+
+            // bool foo = null;
+            int? n = 2;
+            // int m = n;
+            // int m = null;
+            // int n2 = (int)n;
+            // n2 = null;
+
+
+
+#nullable disable
+
+            int foo2 = default;
+            Assert.Equal(0, foo2);
+            string foo3 = default;
+            Assert.True(foo3 == "");
+            // Assert.Equal("", foo3);
+            // Assert.IsNull(foo3);
+
+            string foo = null;
+            string bar = foo;
+
+
+#nullable enable
         }
 
         [Fact]
@@ -72,6 +96,7 @@
 
             (right, left) = Program.SwapTuple(left, right);
             Assert.Equal(("1", "3"), (right, left));
+
         }
 
         [Fact]

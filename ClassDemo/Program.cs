@@ -35,7 +35,13 @@ namespace ClassDemo
 
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Hello, World!");
+            string? foo = null;
+
+            string bar = foo!;
+
+            Console.WriteLine("Before");
+            bar.ToLower();
+            Console.WriteLine("After");
         }
 
         public void Login(string username, string password)
