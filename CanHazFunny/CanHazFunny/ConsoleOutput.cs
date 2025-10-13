@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace CanHazFunny
 {
-    internal interface IOutput
+    sealed internal class ConsoleOutput : IOutput
     {
-        public void ShowOutput(string message);
+        public void ShowOutput(string message)
+        {
+            Console.WriteLine(message);
+        }
     }
 }
