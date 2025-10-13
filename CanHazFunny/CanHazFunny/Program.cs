@@ -1,10 +1,10 @@
 ﻿namespace CanHazFunny;
 
-class Program
+internal sealed class Program
 {
     static void Main(string[] args)
     {
         //Feel free to use your own setup here - this is just provided as an example
-        //new Jester(new SomeReallyCoolOutputClass(), new SomeJokeServiceClass()).TellJoke();
+        new Jester(new ConsoleOutput(), new JokeService()).TellJoke();
     }
 }
