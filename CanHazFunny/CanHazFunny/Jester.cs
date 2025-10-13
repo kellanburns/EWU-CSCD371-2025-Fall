@@ -8,10 +8,12 @@ namespace CanHazFunny
 {
     sealed internal class Jester
     {
-        public IOutput Output { get; set; }
-        public JokeService JokeService { get; set; }
-        public Jester(IOutput output, JokeService jokeService)
+        private IOutput Output { get; set; }
+        private IJokeService JokeService { get; set; }
+        public Jester(IOutput output, IJokeService jokeService)
         {
+            ArgumentNullException.ThrowIfNull(output);
+            ArgumentNullException.ThrowIfNull(jokeService);
             Output = output;
             JokeService = jokeService;
         }

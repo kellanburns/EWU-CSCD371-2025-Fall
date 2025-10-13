@@ -10,6 +10,7 @@ namespace CanHazFunny
     {
         public void ShowOutput(string message)
         {
+            ArgumentNullException.ThrowIfNullOrWhiteSpace(message);
             Console.WriteLine(message);
         }
     }
