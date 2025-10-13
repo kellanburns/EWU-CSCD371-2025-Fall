@@ -2,7 +2,7 @@
 
 namespace CanHazFunny;
 
-public class JokeService
+public class JokeService : IJookeService
 {
     private HttpClient HttpClient { get; } = new();
 
