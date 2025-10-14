@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CanHazFunny
 {
-    sealed internal class Jester
+    public class Jester
     {
-        private IOutput Output { get; set; }
-        private IJokeService JokeService { get; set; }
+        private readonly IOutput Output;
+        private readonly IJokeService JokeService;
         public Jester(IOutput output, IJokeService jokeService)
         {
             ArgumentNullException.ThrowIfNull(output);
@@ -24,6 +24,7 @@ namespace CanHazFunny
             string joke;
             do {
                 joke = JokeService.GetJoke();
+                ArgumentNullException.ThrowIfNullOrWhiteSpace(joke);
                 isChuckNorris = joke.Contains("Chuck") || joke.Contains("Norris");
             } while (isChuckNorris || joke is null);
             Output.ShowOutput(joke);
