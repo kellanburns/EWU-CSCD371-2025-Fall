@@ -25,7 +25,8 @@ namespace CanHazFunny
             do {
                 joke = JokeService.GetJoke();
                 ArgumentNullException.ThrowIfNullOrWhiteSpace(joke);
-                isChuckNorris = joke.Contains("Chuck") || joke.Contains("Norris");
+                isChuckNorris = joke.Contains("Chuck", StringComparison.OrdinalIgnoreCase) 
+                    || joke.Contains("Norris", StringComparison.OrdinalIgnoreCase);
             } while (isChuckNorris || joke is null);
             Output.ShowOutput(joke);
         }
