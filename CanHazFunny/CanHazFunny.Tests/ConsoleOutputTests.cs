@@ -7,7 +7,7 @@ namespace CanHazFunny.Tests;
 public class ConsoleOutputTests
 {
     [Fact]
-    public void ShowOutput_ShouldThrowArgumentNullException_WhenMessageIsNull()
+    public void ShowOutput_MessageIsNull_ArgumentNullException()
     { 
         // Arrange
         var consoleOutput = new ConsoleOutput();
@@ -17,7 +17,7 @@ public class ConsoleOutputTests
     }
 
     [Fact]
-    public void ShowOutput_ShouldThrowArgumentException_WhenMessageIsEmpty()
+    public void ShowOutput_MessageIsEmpty_ArgumentException()
     {
         // Arrange
         var consoleOutput = new ConsoleOutput();
@@ -27,7 +27,7 @@ public class ConsoleOutputTests
     }
 
     [Fact]
-    public void ShowOutput_ShouldThrowArgumentException_WhenMessageIsWhitespace()
+    public void ShowOutput_MessageIsWhitespace_ArgumentException()
     {
         // Arrange
         var consoleOutput = new ConsoleOutput();
