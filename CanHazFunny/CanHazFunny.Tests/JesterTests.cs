@@ -37,14 +37,14 @@ public class JesterTests
         var mockJokeService = new Mock<IJokeService>();
         mockJokeService.SetupSequence(js => js.GetJoke())
             .Returns(testJoke);
-        StringWriter sw = new StringWriter();
+        StringWriter sw = new();
         TextWriter original = Console.Out;
 
         // Act
         try
         {
             Console.SetOut(sw);
-            Jester jester = new Jester(new ConsoleOutput(), mockJokeService.Object);
+            var jester = new Jester(new ConsoleOutput(), mockJokeService.Object);
             jester.TellJoke();
         }
         finally
@@ -66,14 +66,14 @@ public class JesterTests
             .Returns("Norris counted to infinity. Twice.")
             .Returns("Chuck Norris can divide by zero.")
             .Returns("A test joke.");
-        StringWriter sw = new StringWriter();
+        StringWriter sw = new();
         TextWriter original = Console.Out;
 
         // Act
         try
         {
             Console.SetOut(sw);
-            Jester jester = new Jester(new ConsoleOutput(), mockJokeService.Object);
+            var jester = new Jester(new ConsoleOutput(), mockJokeService.Object);
             jester.TellJoke();
         }
         finally
