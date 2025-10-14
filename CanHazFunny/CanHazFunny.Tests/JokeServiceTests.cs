@@ -12,7 +12,7 @@ public class JokeServiceTests
     public void GetJoke_ReturnsNonEmptyString()
     {
         // Arrange
-        JokeService jokeService = new JokeService();
+        JokeService jokeService = new();
 
         // Act
         string joke = jokeService.GetJoke();

@@ -12,7 +12,7 @@ public class JesterTests
     public void Jester_OutputNull_ArgumentNullException()
     {
         // Arrange
-        JokeService jokeService = new JokeService();
+        JokeService jokeService = new();
 
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() => new Jester(null!, jokeService));
@@ -22,7 +22,7 @@ public class JesterTests
     public void Jester_JokeServiceNull_ArgumentNullException()
     {
         // Arrange
-        ConsoleOutput consoleOutput = new ConsoleOutput();
+        ConsoleOutput consoleOutput = new();
 
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() => new Jester(consoleOutput, null!));
