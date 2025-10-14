@@ -9,7 +9,7 @@ namespace CanHazFunny.Tests;
 public class JesterTests
 {
     [Fact]
-    public void Jester_ShouldThrowArgumentNullException_WhenOutputIsNull()
+    public void Jester_OutputNull_ArgumentNullException()
     {
         // Arrange
         JokeService jokeService = new JokeService();
@@ -19,7 +19,7 @@ public class JesterTests
     }
 
     [Fact]
-    public void Jester_ShouldThrowArgumentNullException_WhenJokeServiceIsNull()
+    public void Jester_JokeServiceNull_ArgumentNullException()
     {
         // Arrange
         ConsoleOutput consoleOutput = new ConsoleOutput();
@@ -29,7 +29,7 @@ public class JesterTests
     }
 
     [Fact]
-    public void TellJoke_CallsShowOutput_WithNonChuckNorrisJoke()
+    public void TellJoke_NonChuckNorrisJoke_PrintsJoke()
     {
         // Arrange
         string testJoke = "test output";
