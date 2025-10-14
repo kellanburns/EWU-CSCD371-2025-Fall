@@ -10,7 +10,7 @@ public class ConsoleOutputTests
     public void ShowOutput_MessageIsNull_ArgumentNullException()
     { 
         // Arrange
-        var consoleOutput = new ConsoleOutput();
+        ConsoleOutput consoleOutput = new();
 
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() => consoleOutput.ShowOutput(null!));
@@ -20,7 +20,7 @@ public class ConsoleOutputTests
     public void ShowOutput_MessageIsEmpty_ArgumentException()
     {
         // Arrange
-        var consoleOutput = new ConsoleOutput();
+        ConsoleOutput consoleOutput = new();
 
         // Act & Assert
         Assert.Throws<ArgumentException>(() => consoleOutput.ShowOutput(string.Empty));
@@ -30,7 +30,7 @@ public class ConsoleOutputTests
     public void ShowOutput_MessageIsWhitespace_ArgumentException()
     {
         // Arrange
-        var consoleOutput = new ConsoleOutput();
+        ConsoleOutput consoleOutput = new();
 
         // Act & Assert
         Assert.Throws<ArgumentException>(() => consoleOutput.ShowOutput("   "));
