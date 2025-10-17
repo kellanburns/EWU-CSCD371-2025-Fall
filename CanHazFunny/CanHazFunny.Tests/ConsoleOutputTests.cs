@@ -1,5 +1,4 @@
 using Xunit;
-using CanHazFunny;
 using System;
 
 namespace CanHazFunny.Tests;

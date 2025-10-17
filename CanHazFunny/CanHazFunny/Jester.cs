@@ -23,7 +23,7 @@ public class Jester
             ArgumentNullException.ThrowIfNullOrWhiteSpace(joke);
             isChuckNorris = joke.Contains("Chuck", StringComparison.OrdinalIgnoreCase) 
                 || joke.Contains("Norris", StringComparison.OrdinalIgnoreCase);
-        } while (isChuckNorris || joke is null);
+        } while (isChuckNorris);
         Output.ShowOutput(joke);
     }
 }

@@ -1,5 +1,4 @@
 using Xunit;
-using CanHazFunny;
 using System;
 using Moq;
 using System.IO;
