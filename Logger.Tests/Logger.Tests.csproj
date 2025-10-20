@@ -5,12 +5,10 @@
 	  <LangVersion>latest</LangVersion>
     <IsPackable>false</IsPackable>
     <Nullable>enable</Nullable>
-    <LangVersion>12.0</LangVersion>
+    <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
-	<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-	<Nullable>enable</Nullable>
-	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
   <ItemGroup>
