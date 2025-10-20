@@ -1,5 +1,3 @@
-using System.Data.Common;
-
 namespace Logger;
 
 public abstract record class BaseEntity(Guid Id) : IEntity
