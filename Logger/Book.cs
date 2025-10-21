@@ -1,7 +1,7 @@
 namespace Logger;
 
-public record Book(Guid Id, string name): BaseEntity(Id)
+public record Book(Guid Id, string inputName): BaseEntity(Id)
 {
     public override string Name =>
-        string.IsNullOrWhiteSpace(name) ? string.Empty : name;
+        string.IsNullOrWhiteSpace(inputName) ? string.Empty : inputName;
 }
