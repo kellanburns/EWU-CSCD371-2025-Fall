@@ -24,4 +24,11 @@ public record FullName
         Last = last;
         Middle = string.IsNullOrWhiteSpace(middle) ? string.Empty : middle.Trim();
     }
+
+    public override string ToString()
+    {
+        return string.IsNullOrWhiteSpace(Middle)
+            ? $"{First} {Last}"
+            : $"{First} {Middle} {Last}";
+    }
 }
