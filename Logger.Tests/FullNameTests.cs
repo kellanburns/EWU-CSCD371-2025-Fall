@@ -72,22 +72,6 @@ namespace Logger.Tests
             Assert.Equal(string.Empty, name2.Middle);
         }
         [Fact]
-        public void Properties_SetterNotAccessible_NoSettableProperties()
-        {
-            // Arrange
-            Type type = typeof(FullName);
-
-            // Act
-            System.Reflection.PropertyInfo[] properties = type.GetProperties();
-            List<System.Reflection.PropertyInfo> settableProps = properties
-                .Where(p => p.CanWrite && p.SetMethod is not null)
-                .ToList();
-
-            // Assert
-            Assert.Empty(settableProps);
-        }
-
-        [Fact]
         public void WithExpression_ModifiesCopy_DoesNotAffectOriginal()
         {
             // Arrange

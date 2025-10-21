@@ -7,61 +7,61 @@ namespace Logger.Tests
     public class BookTests
     {
         [Fact]
-        public void Name_AuthorIsProvided_ReturnsTitleByAuthor()
+        public void Name_ValidName_ReturnsName()
         {
             // Arrange
             Guid id = Guid.NewGuid();
-            string title = "Dungeon Crawler Carl";
-            string author = "Matt Dinniman";
-            Book book = new Book(id, title, author);
+            string bookName = "Dungeon Crawler Carl";
+            Book book = new Book(id, bookName);
 
             // Act
             string name = book.Name;
 
             // Assert
-            Assert.Equal("Dungeon Crawler Carl by Matt Dinniman", name);
+            Assert.Equal("Dungeon Crawler Carl", name);
         }
 
         [Fact]
-        public void Name_AuthorIsNull_ReturnsTitleOnly()
+        public void Name_NullOrWhitespace_ReturnsEmptyString()
         {
             // Arrange
-            Guid id = Guid.NewGuid();
-            string title = "The Assassins Apprentice";
-            Book book = new Book(id, title, null);
+            Guid id1 = Guid.NewGuid();
+            Book book1 = new Book(id1, null);
+
+            Guid id2 = Guid.NewGuid();
+            Book book2 = new Book(id2, "   ");
 
             // Act
-            string name = book.Name;
+            string name1 = book1.Name;
+            string name2 = book2.Name;
 
             // Assert
-            Assert.Equal("The Assassins Apprentice", name);
+            Assert.Equal(string.Empty, name1);
+            Assert.Equal(string.Empty, name2);
         }
 
         [Fact]
-        public void Name_AuthorIsWhitespace_ReturnsTitleOnly()
+        public void Constructor_SetsIdCorrectly()
         {
             // Arrange
-            Guid id = Guid.NewGuid();
-            string title = "The Assassins Apprentice";
-            string author = "   ";
-            Book book = new Book(id, title, author);
+            Guid expectedId = Guid.NewGuid();
+            string bookName = "Dungeon Crawler Carl";
 
             // Act
-            string name = book.Name;
+            Book book = new Book(expectedId, bookName);
 
             // Assert
-            Assert.Equal("The Assassins Apprentice", name);
+            Assert.Equal(expectedId, book.Id);
         }
 
         [Fact]
-        public void Equals_TwoBooksWithSameIdTitleAndAuthor_ReturnsTrue()
+        public void Equality_TwoBooksWithSameIdAndName_AreEqual()
         {
             // Arrange
             Guid id = Guid.NewGuid();
-            string title = "Dungeon Crawler Carl";
-            string author = "Matt Dinniman";
-            Book book1 = new Book(id, title, author);
-            Book book2 = new Book(id, title, author);
+            string bookName = "Dungeon Crawler Carl";
+            Book book1 = new Book(id, bookName);
+            Book book2 = new Book(id, bookName);
 
             // Act
             bool areEqual = book1.Equals(book2);
@@ -71,19 +71,47 @@ namespace Logger.Tests
         }
 
         [Fact]
-        public void Equals_TwoBooksWithDifferentIds_ReturnsFalse()
+        public void Equality_TwoBooksWithDifferentId_AreNotEqual()
         {
             // Arrange
-            string title = "Dungeon Crawler Carl";
-            string author = "Matt Dinniman";
-            Book book1 = new Book(Guid.NewGuid(), title, author);
-            Book book2 = new Book(Guid.NewGuid(), title, author);
+            Book book1 = new Book(Guid.NewGuid(), "Dungeon Crawler Carl");
+            Book book2 = new Book(Guid.NewGuid(), "Dungeon Crawler Carl");
 
             // Act
             bool areEqual = book1.Equals(book2);
 
             // Assert
             Assert.False(areEqual);
+        }
+
+        [Fact]
+        public void GetHashCode_TwoBooksWithSameIdAndName_HaveSameHashCode()
+        {
+            // Arrange
+            Guid id = Guid.NewGuid();
+            string bookName = "Dungeon Crawler Carl";
+            Book book1 = new Book(id, bookName);
+            Book book2 = new Book(id, bookName);
+
+            // Act
+            int hash1 = book1.GetHashCode();
+            int hash2 = book2.GetHashCode();
+
+            // Assert
+            Assert.Equal(hash1, hash2);
+        }
+
+        [Fact]
+        public void Book_ImplementsIEntity_ReturnsTrue()
+        {
+            // Arrange
+            Book book = new Book(Guid.NewGuid(), "Dungeon Crawler Carl");
+
+            // Act
+            bool implementsInterface = book is IEntity;
+
+            // Assert
+            Assert.True(implementsInterface);
         }
     }
 }
