@@ -42,7 +42,6 @@ public class NodeTests
         var node = new Node<int>(4);
 
         Assert.Throws<ArgumentException>(() => node.Append(4));
-        // Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<ArgumentException>(() => node.Append(4));
     }
 
     [TestMethod]
@@ -73,7 +72,7 @@ public class NodeTests
         first.Append(-1);
         first.Append(-2);
 
-        Assert.AreEqual<bool>(true, first.Exists(7));
+        Assert.IsTrue(first.Exists(7));
     }
 
     [TestMethod]
@@ -83,7 +82,7 @@ public class NodeTests
         first.Append("negative one");
         first.Append("negative two");
 
-        Assert.AreEqual<bool>(true, first.Exists("seven"));
+        Assert.IsTrue(first.Exists("seven"));
     }
 
     [TestMethod]
@@ -93,7 +92,7 @@ public class NodeTests
         first.Append(-1);
         first.Append(-2);
 
-        Assert.AreEqual<bool>(false, first.Exists(0));
+        Assert.IsFalse(first.Exists(0));
     }
 
     [TestMethod]
@@ -103,6 +102,6 @@ public class NodeTests
         first.Append("negative one");
         first.Append("negative two");
 
-        Assert.AreEqual<bool>(false, first.Exists("zero"));
+        Assert.IsFalse(first.Exists("zero"));
     }
 }

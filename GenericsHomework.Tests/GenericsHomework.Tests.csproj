@@ -7,7 +7,6 @@
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <ImplicitUsings>enable</ImplicitUsings>
-    <NoWarn>$(NoWarn);MSTEST0037</NoWarn> <!-- Allows me to exclusively use Assert.AreEqual<T>() -->
   </PropertyGroup>
 
   <ItemGroup>
