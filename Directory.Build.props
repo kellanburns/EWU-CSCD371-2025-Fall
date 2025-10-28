@@ -6,5 +6,5 @@
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <ImplicitUsings>enable</ImplicitUsings>
-  <PropertyGroup>
-<Project>
+  </PropertyGroup>
+</Project>
