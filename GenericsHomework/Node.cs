@@ -1,4 +1,7 @@
-﻿namespace GenericsHomework;
+﻿using System;
+using System.Collections.Generic;
+
+namespace GenericsHomework;
 
 public class Node<T>
 {
@@ -22,7 +25,7 @@ public class Node<T>
     public Node<T> Append(T value)
     {
         if (Exists(value))
-            throw new ArgumentException(nameof(value), "No duplicate values.");
+            throw new ArgumentException("No duplicate values.", nameof(value));
 
         var newNode = new Node<T>(value);
         newNode.Next = this.Next;
@@ -38,8 +41,8 @@ public class Node<T>
         // will be deallocated without memory leaks.
         this.Next = this;
     }
-    
-    public static bool Exists(T value)
+
+    public bool Exists(T value)
     {
         var comp = EqualityComparer<T>.Default;
         var head = this;
