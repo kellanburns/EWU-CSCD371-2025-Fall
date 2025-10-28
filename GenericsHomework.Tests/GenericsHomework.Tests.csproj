@@ -7,6 +7,7 @@
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <ImplicitUsings>enable</ImplicitUsings>
+    <NoWarn>$(NoWarn);MSTEST0037</NoWarn> <!-- Allows me to exclusively use Assert.AreEqual<T>() -->
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,7 +15,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="MSTest" Version="4.0.0-preview.25415.9" />
+    <PackageReference Include="MSTest.TestAdapter" Version="4.0.1" />
+    <PackageReference Include="MSTest.TestFramework" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
