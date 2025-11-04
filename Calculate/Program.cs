@@ -32,15 +32,17 @@ public class Program
             var input = ReadLine();
 
             if (string.IsNullOrWhiteSpace(input))
+            {
+                WriteLine("Exiting Calculator.");
                 return 0;
-
+            }
             if (calculator.TryCalculate(input, out var result)) 
             {
                 WriteLine(result.ToString());
                 continue;
             }
 
-            WriteLine("Invalid calculation.");
+            WriteLine("Invalid input. Try again.");
         }
     }
     
