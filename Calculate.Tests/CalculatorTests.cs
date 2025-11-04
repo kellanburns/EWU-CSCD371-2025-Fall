@@ -24,6 +24,7 @@ public sealed class CalculatorTests
         Assert.AreEqual<int>(0, quotient);
     }
 
+    [TestMethod]
     public void MathematicalOperations_ValidDecimalMath_ReturnsCorrectValues()
     {
         var calc = new Calculator<double>();
@@ -49,6 +50,7 @@ public sealed class CalculatorTests
         bool product = calc.TryCalculate("6 *7", out _);
         bool quotient = calc.TryCalculate("six / 7", out _);
 
+        // Using 'IsFalse' here to avoid compiler warnings
         Assert.IsFalse(sum);
         Assert.IsFalse(difference);
         Assert.IsFalse(product);
@@ -62,6 +64,7 @@ public sealed class CalculatorTests
 
         bool divZero = calc.TryCalculate("6 / 0", out _);
 
+        // Using 'IsFalse' here to avoid compiler warnings
         Assert.IsFalse(divZero);
     }
 

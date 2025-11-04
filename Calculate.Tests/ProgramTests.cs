@@ -1,11 +1,22 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Numerics;
-using System.Xml;
+
 
 namespace Calculate.Tests;
 
 [TestClass]
 public sealed class ProgramTests
 {
+    [TestMethod]
+    public void Program_Constructor_DefinesNonNullDelegates()
+    {
+        var prog = new Program();
+
+        // Using "IsNotNull" to avoid compiler warnings
+        Assert.IsNotNull(prog.WriteLine);
+        Assert.IsNotNull(prog.ReadLine);
+    }
+
     [TestMethod]
     public void Run_DelegateInjection_FunctionsProperly()
     {
