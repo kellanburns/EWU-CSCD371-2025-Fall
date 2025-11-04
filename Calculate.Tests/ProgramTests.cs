@@ -21,7 +21,9 @@ public sealed class ProgramTests
     public void Run_DelegateInjection_FunctionsProperly()
     {
         var writeList = new List<string?>();
-        var inputs = new Queue<string?>(new[] { "6 + 7", "" });
+        var inputs = new Queue<string?>();
+        inputs.Enqueue("6 + 7");
+        inputs.Enqueue("");
         var prog = new Program(
             writeLine: s => writeList.Add(s),
             readLine: () => inputs.Count > 0 ? inputs.Dequeue() : null
@@ -38,7 +40,10 @@ public sealed class ProgramTests
     public void Run_InvalidInput_AsksForInputAgain()
     {
         var writeList = new List<string?>();
-        var inputs = new Queue<string?>(new[] { "6+ 7", "6 + 7", "" });
+        var inputs = new Queue<string?>();
+        inputs.Enqueue("6+ 7");
+        inputs.Enqueue("6 + 7");
+        inputs.Enqueue("");
         var prog = new Program(
             writeLine: s => writeList.Add(s),
             readLine: () => inputs.Count > 0 ? inputs.Dequeue() : null
@@ -56,7 +61,8 @@ public sealed class ProgramTests
     public void Run_WhitespaceInput_ExitsLoop()
     {
         var writeList = new List<string?>();
-        var inputs = new Queue<string?>(new[] { "" });
+        var inputs = new Queue<string?>();
+        inputs.Enqueue("");
         var prog = new Program(
             writeLine: s => writeList.Add(s),
             readLine: () => inputs.Count > 0 ? inputs.Dequeue() : null

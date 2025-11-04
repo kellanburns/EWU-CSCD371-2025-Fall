@@ -21,7 +21,6 @@ public class Program
 
     public int Run<T>(Calculator<T> calculator) where T : INumber<T>
     {
-        // if (calculator == null) throw new ArgumentNullException(nameof(calculator));
         ArgumentNullException.ThrowIfNull(calculator);
 
         while (true)
