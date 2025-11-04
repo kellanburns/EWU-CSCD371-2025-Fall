@@ -7,22 +7,14 @@ using System.Numerics;
 namespace Calculate;
 
 public class Calculator <T> where T : INumber<T> {
-    public static T Add(T a, T b) => a + b;
-    public static T Subtract(T a, T b) => a - b;
-    public static T Multiple(T a, T b) => a * b;
-    public static T Divide(T a, T b)
-    {
-        if (b == T.Zero) throw new DivideByZeroException();
-        return a / b;
-    }
-
+    
     public IReadOnlyDictionary<char, Func<T, T, T>> MathematicalOperations { get; } =
         new Dictionary<char, Func<T, T, T>>
         {
-            ['+'] = Add,
-            ['-'] = Subtract,
-            ['*'] = Multiple,
-            ['/'] = Divide 
+            ['+'] = CalculatorOperations.Add,
+            ['-'] = CalculatorOperations.Subtract,
+            ['*'] = CalculatorOperations.Multiple,
+            ['/'] = CalculatorOperations.Divide 
         };
         
     public bool TryCalculate(string calculation, out T result)
