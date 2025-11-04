@@ -1,7 +1,7 @@
-﻿namespace Calculate.Tests;
+namespace Calculate.Tests;
 
 [TestClass]
-public sealed class Test1
+public sealed class ProgramTests
 {
     [TestMethod]
     public void TestMethod1()
