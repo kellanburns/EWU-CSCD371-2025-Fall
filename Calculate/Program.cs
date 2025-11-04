@@ -21,9 +21,36 @@ public class Program
         WriteLine = writeLine ?? throw new ArgumentNullException(nameof(writeLine));
         ReadLine = readLine ?? throw new ArgumentNullException(nameof(readLine));
     }
+
+    public int Run<T>(Calculator<T> calculator) where T : INumber<T>
+    {
+        if (calculator == null) throw new ArgumentNullException(nameof(calculator));
+
+        while (true)
+        {
+            WriteLine("Enter calculation (or enter blank line to exit):");
+            var input = ReadLine();
+
+            if (string.IsNullOrWhiteSpace(input))
+                return 0;
+
+            if (calculator.TryCalculate(input, out var result)) 
+            {
+                WriteLine(result.ToString());
+                continue;
+            }
+
+            WriteLine("Invalid calculation.");
+        }
+    }
     
     public static int Main()
     {
-        return 0;
+        var prog = new Program();
+        var calc = new Calculator<int>();
+
+        int runResult = prog.Run<int>(calc);
+        
+        return runResult;
     }
 }
