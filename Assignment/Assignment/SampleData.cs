@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 
@@ -20,15 +21,17 @@ public class SampleData : ISampleData
     // 2.
     public IEnumerable<string> GetUniqueSortedListOfStatesGivenCsvRows()
     {
-        List<string> distinctItems = CsvRows.ToList();
-        distinctItems.Sort();
-        distinctItems.Distinct();
-        return distinctItems;
+        string[] states = CsvRows.ToArray().Select(row => row.Split(',')[6]).ToArray();
+        Console.WriteLine(states.ToString());
+        return states.Distinct().OrderBy(state => state);
     }
 
     // 3.
     public string GetAggregateSortedListOfStatesUsingCsvRows()
-        => throw new NotImplementedException();
+    {
+        IEnumerable<string> states = GetUniqueSortedListOfStatesGivenCsvRows();
+        return string.Join(", ", states);
+    }
 
     // 4.
     public IEnumerable<IPerson> People => throw new NotImplementedException();
