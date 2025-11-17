@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 
@@ -10,13 +9,7 @@ namespace Assignment;
 public class SampleData : ISampleData
 {
     // 1.
-    public IEnumerable<string> CsvRows
-    {
-        get
-        {
-            return File.ReadLines("People.csv").Skip(1);
-        }
-    }
+    public IEnumerable<string> CsvRows { get; } = File.ReadLines("People.csv").Skip(1);
 
     // 2.
     public IEnumerable<string> GetUniqueSortedListOfStatesGivenCsvRows()
@@ -34,7 +27,32 @@ public class SampleData : ISampleData
     }
 
     // 4.
-    public IEnumerable<IPerson> People => throw new NotImplementedException();
+    public SampleData()
+    {
+        People = LoadPeopleFromCsvRows();
+    }
+    public IEnumerable<IPerson> People { get; init; }
+
+    private IEnumerable<IPerson> LoadPeopleFromCsvRows()
+    {
+        List<IPerson> people = new List<IPerson>();
+        foreach (string row in CsvRows)
+        {
+            string[] columns = row.Split(',');
+            IAddress address = new Address(
+                columns[4],
+                columns[5],
+                columns[6],
+                columns[7]);
+            IPerson person = new Person(
+                columns[1],
+                columns[2],
+                address,
+                columns[3]);
+            people.Add(person);
+        }
+        return people.OrderBy(s => s.Address.State).ThenBy(s => s.Address.City).ThenBy(s => s.Address.Zip);
+    }
 
     // 5.
     public IEnumerable<(string FirstName, string LastName)> FilterByEmailAddress(

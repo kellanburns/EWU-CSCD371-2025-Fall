@@ -4,9 +4,9 @@
   <TargetFramework>net9.0</TargetFramework>
 </PropertyGroup>
 
-<ItemGroup>
+<!-- <ItemGroup>
   <Compile Remove="Person.cs" />
-</ItemGroup>
+</ItemGroup> -->
 
 <ItemGroup>
   <None Remove="People.csv" />
