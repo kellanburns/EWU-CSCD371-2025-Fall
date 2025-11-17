@@ -18,8 +18,13 @@ public class SampleData : ISampleData
     }
 
     // 2.
-    public IEnumerable<string> GetUniqueSortedListOfStatesGivenCsvRows() 
-        => throw new NotImplementedException();
+    public IEnumerable<string> GetUniqueSortedListOfStatesGivenCsvRows()
+    {
+        List<string> distinctItems = CsvRows.ToList();
+        distinctItems.Sort();
+        distinctItems.Distinct();
+        return distinctItems;
+    }
 
     // 3.
     public string GetAggregateSortedListOfStatesUsingCsvRows()
