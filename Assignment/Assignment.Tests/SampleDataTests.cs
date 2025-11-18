@@ -1,7 +1,10 @@
+#pragma warning disable MSTEST0037
+
 using Assignment;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 
@@ -97,6 +100,83 @@ public class SampleDataTests
              prev.Address.City != next.Address.City ||
              string.Compare(prev.Address.Zip, next.Address.Zip, StringComparison.Ordinal) <= 0))
         .All(result => result)
+        );
+    }
+
+    [TestMethod]
+    public void FilterByEmailAddress_PredicateAlwaysTrue_ReturnsAllPersons()
+    {
+        SampleData sampledata = new Assignment.SampleData();
+        IEnumerable<IPerson> people = sampledata.People;
+
+        var result = sampledata.FilterByEmailAddress(email => true).ToList();
+
+        Assert.IsNotNull(result);
+        Assert.AreEqual(people.Count(), result.Count());
+        Assert.IsTrue(people.All(p => result.Any(t => t.FirstName == p.FirstName && t.LastName == p.LastName)));
+    }
+
+    [TestMethod]
+    public void FilterByEmailAddress_PredicateAlwaysFalse_ReturnsEmpty()
+    {
+        SampleData sampledata = new Assignment.SampleData();
+        IEnumerable<IPerson> people = sampledata.People;
+
+        var result = sampledata.FilterByEmailAddress(email => false).ToList();
+
+        Assert.IsNotNull(result);
+        Assert.IsFalse(result.Any());
+    }
+
+    [TestMethod]
+    public void FilterByEmailAddress_NullPredicate_ThrowsNullArgumentException()
+    {
+        SampleData sampledata = new Assignment.SampleData();
+
+        Assert.Throws<ArgumentNullException>(
+            () => sampledata.FilterByEmailAddress(null!)
+        );
+    }
+
+    [TestMethod]
+    public void GetAggregateListOfStatesGivenPeopleCollection_ValidInput_ReturnsStates()
+    {
+        var people = new List<IPerson>
+        {
+            new Person("Alice", "One", new Address("Street 1", "CityA", "WA", "99205"), "alice@example.com"),
+            new Person("Bob", "Two", new Address("Street 2", "CityB", "ID", "83854"), "bob@example.com"),
+            new Person("Cam", "Three", new Address("Street 3", "CityC", "OR", "97001"), "cam@example.com"),
+            new Person("Dan", "Four", new Address("Street 4", "CityD", "WA", "99001"), "dan@example.com"),
+        };
+        SampleData sampleData = new Assignment.SampleData();
+
+        string result = sampleData.GetAggregateListOfStatesGivenPeopleCollection(people);
+
+        Assert.IsNotNull(result);
+        var states = result.Split(", ", StringSplitOptions.RemoveEmptyEntries);
+        Assert.AreEqual(states.Distinct().Count(), states.Length);
+        Assert.IsTrue(states.Zip(states.Skip(1), (prev, next) => string.Compare(prev, next, StringComparison.Ordinal) <= 0).All(b => b));
+        CollectionAssert.AreEqual(new[] { "ID", "OR", "WA" }, states);
+    }
+
+    [TestMethod]
+    public void GetAggregateListOfStatesGivenPeopleCollection_EmptyCollection_ReturnsEmptyString()
+    {
+        IEnumerable<IPerson> people = Enumerable.Empty<IPerson>();
+        SampleData sampledata = new Assignment.SampleData();
+
+        string result = sampledata.GetAggregateListOfStatesGivenPeopleCollection(people);
+
+        Assert.AreEqual(string.Empty, result);
+    }
+    
+    [TestMethod]
+    public void GetAggregateListOfStatesGivenPeopleCollection_NullPeople_ThrowsArgumentNullException()
+    {
+        SampleData sampledata = new Assignment.SampleData();
+
+        Assert.Throws<ArgumentNullException>(
+            () => sampledata.GetAggregateListOfStatesGivenPeopleCollection(null!)
         );
     }
 
