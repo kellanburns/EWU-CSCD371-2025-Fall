@@ -58,8 +58,7 @@ public class SampleData : ISampleData
     public IEnumerable<(string FirstName, string LastName)> FilterByEmailAddress(
         Predicate<string> filter) 
     {
-        if (filter is null)
-            throw new ArgumentNullException(nameof(filter));
+        ArgumentNullException.ThrowIfNull(filter);
 
         return People.Where(person => filter(person.EmailAddress)).Select(person => (person.FirstName, person.LastName));
     }
@@ -68,8 +67,7 @@ public class SampleData : ISampleData
     public string GetAggregateListOfStatesGivenPeopleCollection(
         IEnumerable<IPerson> people)
     {
-        if (people is null)
-            throw new ArgumentNullException(nameof(people));
+        ArgumentNullException.ThrowIfNull(people);
 
         var uniqueStates = people.Select(people => people.Address.State).Where(s => !string.IsNullOrWhiteSpace(s))
             .Distinct().OrderBy(s => s).ToList();
