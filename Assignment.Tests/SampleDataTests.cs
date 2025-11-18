@@ -13,6 +13,8 @@ namespace AssignmentTests;
 [TestClass]
 public class SampleDataTests
 {
+    private static readonly string[] ExpectedStatesForAggregate = new[] { "ID", "OR", "WA" };
+
     [TestMethod]
     public void SampleData_CreateNewInstance_CsvRowsLoadsData()
     {
@@ -158,7 +160,7 @@ public class SampleDataTests
         var states = result.Split(", ", StringSplitOptions.RemoveEmptyEntries);
         Assert.AreEqual(states.Distinct().Count(), states.Length);
         Assert.IsTrue(states.Zip(states.Skip(1), (prev, next) => string.Compare(prev, next, StringComparison.Ordinal) <= 0).All(b => b));
-        CollectionAssert.AreEqual(new[] { "ID", "OR", "WA" }, states);
+        CollectionAssert.AreEqual(ExpectedStatesForAggregate, states);
     }
 
     [TestMethod]
@@ -182,7 +184,7 @@ public class SampleDataTests
         );
     }
 
-    IPerson CreatePerson(string row)
+    private static IPerson CreatePerson(string row)
     {
         string[] columns = row.Split(',');
         IAddress address = new Address(
@@ -198,7 +200,7 @@ public class SampleDataTests
         return person;
     }
 
-    bool IsNonDecreasingList(IEnumerable<string> input)
+    private static bool IsNonDecreasingList(IEnumerable<string> input)
     {
         return input
             .Zip(input.Skip(1), (prev, next) => string.Compare(next, prev, StringComparison.Ordinal) >= 0)
