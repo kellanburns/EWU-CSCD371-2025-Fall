@@ -5,6 +5,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
 
+namespace AssignmentTests;
+
 [TestClass]
 public class NodeTests
 {

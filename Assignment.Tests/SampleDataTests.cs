@@ -8,6 +8,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 
+namespace AssignmentTests;
+
 [TestClass]
 public class SampleDataTests
 {
@@ -112,7 +114,7 @@ public class SampleDataTests
         var result = sampledata.FilterByEmailAddress(email => true).ToList();
 
         Assert.IsNotNull(result);
-        Assert.AreEqual(people.Count(), result.Count());
+        Assert.AreEqual(people.Count(), result.Count);
         Assert.IsTrue(people.All(p => result.Any(t => t.FirstName == p.FirstName && t.LastName == p.LastName)));
     }
 
@@ -125,7 +127,7 @@ public class SampleDataTests
         var result = sampledata.FilterByEmailAddress(email => false).ToList();
 
         Assert.IsNotNull(result);
-        Assert.IsFalse(result.Any());
+        Assert.AreEqual(0, result.Count);
     }
 
     [TestMethod]
