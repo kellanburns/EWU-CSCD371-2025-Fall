@@ -63,7 +63,7 @@ public class SampleDataTests
     {
         SampleData sampleData = new Assignment.SampleData();
         IEnumerable<string> csvRows = sampleData.CsvRows;
-        List<IPerson> peopleList = sampleData.People.ToList();   // freeze evaluation once
+        List<IPerson> peopleList = sampleData.People.ToList(); 
 
         Assert.IsTrue(
             csvRows
